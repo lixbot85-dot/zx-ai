@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 
 client = Groq(
-    api_key=os.environ.get("GROQ_API_KEY")
+    api_key=os.environ.get("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")
 )
 
 @app.route("/")
