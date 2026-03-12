@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ZX AI</title>
+<style>
+body{
+background:#0f172a;
+color:white;
+font-family:sans-serif;
+text-align:center;
+}
+
+#chat{
+width:60%;
+margin:auto;
+}
+
+input{
+width:70%;
+padding:10px;
+}
+
+button{
+padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>ZX AI</h1>
+
+<div id="chat">
+<input id="msg" placeholder="Digite...">
+<button onclick="send()">Enviar</button>
+
+<div id="messages"></div>
+</div>
+
+<script>
+async function send(){
+
+let msg = document.getElementById("msg").value
+
+let res = await fetch("/chat",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({message:msg})
+})
+
+let data = await res.json()
+
+document.getElementById("messages").innerHTML +=
+"<p><b>Você:</b> "+msg+"</p>"
+
+document.getElementById("messages").innerHTML +=
+"<p><b>ZX:</b> "+data.reply+"</p>"
+}
+</script>
+
+</body>
+</html>
